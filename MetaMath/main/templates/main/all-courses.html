@@ -1,0 +1,104 @@
+{% extends 'index.html' %}
+{% block title %} Cursos | Metamath {% endblock title %}
+{% block profile %}
+{% if faculty  %} {% url 'profile' faculty.faculty_id %}
+{% else %} {% url 'profile' student.student_id %}
+{% endif %}
+{% endblock %}
+{% block user %}
+{% if faculty %} {{faculty.name}}
+{% else %} {{student.name}}
+{% endif %}
+{% endblock user %}
+{% block courses %}
+{% url 'myCourses' %}
+{% endblock courses %}
+{% block allCourses %}
+{% url 'courses' %}
+{% endblock %}
+{% block content %}
+<div class="container">
+   <!-- navigation links -->
+   <div class="container shadow-sm">
+      <style>
+         /* Modern pastel styles with slightly darker tones */
+         .breadcrumb {
+            background-color: #D6E4F0; /* Slightly darker pastel blue */
+            font-weight: bold;
+            color: #125A9E; /* Darker pastel blue */
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+         }
+         .breadcrumb-item.active {
+            color: #0D47A1; /* Deeper pastel blue */
+         }
+         .card {
+            border-radius: 1rem; /* Rounded corners for cards */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            background-color: #F0F4F8; /* Slightly darker light gray */
+         }
+         .class-header {
+            background-color: #5A9BD5; /* Deeper pastel blue */
+            color: white;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+         }
+         .btn-outline-dark {
+            border-color: #5A9BD5; /* Deeper pastel blue */
+            color: #5A9BD5; /* Deeper pastel blue */
+            border-radius: 0.5rem; /* Rounded buttons */
+         }
+         .btn-outline-dark:hover {
+            background-color: #5A9BD5; /* Deeper pastel blue */
+            color: white;
+         }
+         .card-title {
+            color: #125A9E; /* Darker pastel blue */
+         }
+         .card-text {
+            color: #4A6FA5; /* Deeper pastel purple */
+         }
+      </style>
+      <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+         <ol class="breadcrumb p-3">
+            <li class="breadcrumb-item active animate__animated animate__backInRight" aria-current="page">Todos los cursos</li>
+         </ol>
+      </nav>
+   </div>
+   <!-- navigation links end -->
+   <div class="row gy-5">
+      {% if courses %}
+      {% for course in courses%}
+      <!-- individual card starts -->
+      <div class="col-sm-6 d-flex align-items-stretch justify-content-center animate__animated animate__zoomIn">
+         <div class="card shadow" style="width: 30rem !important;">
+            <div class="class-header text-center text-light border-bottom bg-dark rounded">
+               <h6 class="my-2"> Materia: {{course.department}}</h6>
+            </div>
+            <div class="card-body d-flex flex-column align-items-center">
+               <h5 class="card-title fw-bold">{{course.department}}-{{course.code}} : {{course.name}}</h5>
+               {% if course.faculty %}
+               <p class="card-text fw-bold">Profesor del curso : {{ course.faculty.name}}</p>
+               {% else %}
+               <p> Aun no se ha asignado </p>
+               {% endif %}
+               {% if not faculty %}
+               {% comment %} if student {% endcomment %}
+               {% if course not in enrolled%}
+               <a href="{% url 'access' course.code %}" class="btn btn-outline-dark"><span class="px-2">Acceso</span></a>
+               {% else %}
+               <a href="{% url 'course' course.code %}" class="btn btn-outline-dark"><span
+                  class="px-3">Entrar</span></a>
+               {% endif %}
+               {% endif %}
+            </div>
+         </div>
+      </div>
+      <!-- individual card ends -->
+      {% endfor %}
+   </div>
+   {% else %}
+   <div class="text-center h4 text-secondary">No hay cursos para mostrar</div>
+   {% endif %}
+</div>
+{% endblock  %}

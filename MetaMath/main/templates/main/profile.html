@@ -1,0 +1,121 @@
+{% extends 'index.html' %}
+{% block title %}{{student.name}} | Metamath{% endblock title %}
+{% block profile %}
+{% url 'profile' student.student_id %}
+{% endblock %}
+{% block user %}
+{{student.name}}
+{% endblock user %}
+{% block courses %}
+{% url 'myCourses' %}
+{% endblock courses %}
+{% block allCourses %}
+{% url 'courses' %}
+{% endblock %}
+{% block departments %}
+{% url 'departments' %}
+{% endblock %}
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+   {{ message }}
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+<!--navigation links-->
+<div class="container my-5">
+   <style>
+      /* General styles */
+      body {
+         background-color: #F0F4F8; /* Light pastel gray */
+         font-family: 'Nunito', sans-serif; /* Softer font */
+      }
+      .breadcrumb {
+         background-color: #E3F2FD; /* Light pastel blue */
+         font-weight: bold;
+         color: #1565C0; /* Dark pastel blue */
+         border-radius: 0.5rem;
+         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      }
+      .breadcrumb-item.active {
+         color: #1E88E5; /* Primary pastel blue */
+      }
+      .profile-container {
+         background-color: #FFFFFF; /* White background */
+         border-radius: 1rem; /* Rounded corners */
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+         padding: 2rem;
+      }
+      .profile-header {
+         text-align: center;
+         margin-bottom: 2rem;
+      }
+      .profile-header h2 {
+         color: #1565C0; /* Dark pastel blue */
+         font-weight: bold;
+      }
+      .profile-image {
+         display: flex;
+         justify-content: center;
+         margin-bottom: 1.5rem;
+      }
+      .profile-image img {
+         border-radius: 50%; /* Circular image */
+         border: 4px solid #E3F2FD; /* Light pastel blue border */
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+         height: 10rem;
+         width: 10rem;
+      }
+      .profile-details h5 {
+         font-weight: bold;
+         color: #1565C0; /* Dark pastel blue */
+         margin-bottom: 0.5rem;
+      }
+      .btn-primary {
+         background-color: #64B5F6; /* Soft pastel blue */
+         border-color: #64B5F6;
+         color: white;
+         border-radius: 2rem; /* Fully rounded buttons */
+         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+         padding: 0.5rem 1.5rem;
+      }
+      .btn-primary:hover {
+         background-color: #42A5F5; /* Slightly darker pastel blue */
+         border-color: #42A5F5;
+      }
+   </style>
+   <!-- Breadcrumb -->
+   <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+      <ol class="breadcrumb p-3">
+         <li class="breadcrumb-item"><a href="{% url 'myCourses' %}">Mis Cursos</a></li>
+         <li class="breadcrumb-item active" aria-current="page">Perfil</li>
+      </ol>
+   </nav>
+   <!-- Profile Container -->
+   <div class="profile-container">
+      <div class="profile-header">
+         <h2>Información del Estudiante</h2>
+      </div>
+      <div class="profile-image">
+         <img src="/media/{{student.photo}}" alt="Foto de perfil">
+      </div>
+      <div class="profile-details text-center">
+         <h5>Nombre: {{student.name}}</h5>
+         <h5>ID: {{student.student_id}}</h5>
+         <h5>Materia: {{student.department}}</h5>
+      </div>
+      <div class="d-flex justify-content-center mt-4">
+         <a href="{% url 'changePasswordPrompt' %}" class="btn btn-primary mx-2">Cambiar Contraseña</a>
+         <a href="{% url 'changePhotoPrompt' %}" class="btn btn-primary mx-2">Cambiar Foto</a>
+      </div>
+   </div>
+</div>
+<script>
+   setTimeout(function() {
+      const alerts = document.querySelectorAll('.alert');
+      alerts.forEach(alert => alert.classList.add('fade'));
+   }, 3000);
+</script>
+{% endblock %}

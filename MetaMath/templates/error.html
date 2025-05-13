@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>¡Error!</title>
+      <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/icon/apple-touch-icon.png' %}">
+      <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/icon/favicon-32x32.png' %}">
+      <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/icon/favicon-16x16.png' %}">
+      <link rel="manifest" href="{% static 'images/icon/site.webmanifest' %}">
+      <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+   </head>
+   <body>
+      <div class="container d-flex justify-content-center align-items-center flex-column" style="min-height: 90vh;">
+         <div>
+            <h2 class="d-inline">ATENCION, HA OCURRIDO UN</h2>
+            <h1 class="d-inline fw-bold" style="font-size: 8vw;color:red"> ERROR</h1>
+            <h2 class="d-inline"> AAH!</h2>
+         </div>
+         <a style="text-decoration: none;" href=" {% url 'std_logout' %} ">RAPIDO! Por favor, inicia sesión de nuevo desde aquí</a>
+         <div>
+            <h2 style="color: rgb(10, 10, 48); font-size: 1rem;">
+               Si el problema persiste, intenta borrar las cookies de tu navegador y reinicia a ver o ALT+F4
+            </h2>
+         </div>
+      </div>
+      <script src=" {% static 'js/bootstrap.bundle.min.js' %}"></script>
+   </body>
+</html>

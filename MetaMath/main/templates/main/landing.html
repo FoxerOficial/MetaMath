@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido | Metamath</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #cfd8dc;
+            color: #2e2e2e;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color:rgb(74, 81, 134);
+        }
+        .navbar-brand:hover {
+            color:rgb(48, 56, 100);
+        }
+        .hero-section {
+            text-align: center;
+            padding: 150px 20px;
+            background: url("https://source.unsplash.com/1600x900/?education,learning") no-repeat center center/cover;
+            color: #fff;
+            position: relative;
+        }
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(78, 85, 133, 0.6);
+            z-index: 1;
+        }
+        .hero-section h1,
+        .hero-section p,
+        .hero-section .btn-login {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-section h1 {
+            font-size: 4rem;
+            font-weight: 600;
+            font-family: 'Lora', serif;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .hero-section p {
+            font-size: 1.5rem;
+            margin: 20px 0;
+        }
+        .btn-login {
+            background-color: #b39ddb;
+            color: #fff;
+            font-size: 1.2rem;
+            padding: 10px 30px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .btn-login:hover {
+            background-color: #8e99f3;
+            color: #fff;
+        }
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #8e99f3;
+        }
+        .section p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #2e2e2e;
+        }
+        .features {
+            background-color: #e0e0e0;
+        }
+        .feature-card {
+            background: #ffffff;
+            border: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+        }
+        .feature-card i {
+            font-size: 2.5rem;
+            color: #8e99f3;
+            margin-bottom: 10px;
+        }
+        .testimonials {
+            background-color: #f5f5f5;
+        }
+        .testimonial-card {
+            background: #ffffff;
+            border: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+        }
+        .cta-section {
+            background-color: #8e99f3;
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .cta-section .btn-dark {
+            background-color: #b39ddb;
+            color: #fff;
+            font-size: 1.2rem;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+        }
+        .cta-section .btn-dark:hover {
+            background-color: #5c6bc0;
+            color: #fff;
+        }
+        .social-icons a {
+            color: #8e99f3;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: #5c6bc0;
+        }
+        footer {
+            background-color: #5c6bc0;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            .hero-section p {
+                font-size: 1rem;
+            }
+            .btn-login {
+                font-size: 1rem;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Metamath</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#mission">Misión</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#vision">Visión</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">Características</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonios</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1 class="animate__animated animate__fadeInDown">Bienvenido a Metamath</h1>
+        <p class="animate__animated animate__fadeInUp">Tu plataforma para gestionar cursos y asistencia de manera sencilla.</p>
+        <a href="{% url 'std_login' %}" class="btn btn-login animate__animated animate__zoomIn">Ingresar</a>
+    </div>
+
+    <!-- Mission Section -->
+    <div id="mission" class="section">
+        <h2>Nuestra Misión</h2>
+        <p>Empoderar a estudiantes y profesores con una plataforma intuitiva para gestionar cursos, asistencia y progreso académico.</p>
+    </div>
+
+    <!-- Vision Section -->
+    <div id="vision" class="section" style="background-color: #e0e0e0;">
+        <h2>Nuestra Visión</h2>
+        <p>Ser la plataforma educativa líder que conecta la tecnología con el aprendizaje, fomentando el crecimiento y la innovación.</p>
+    </div>
+
+    <!-- Features Section -->
+    <div id="features" class="section features">
+        <h2>Características</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="bi bi-calendar-check"></i>
+                        <h5>Gestión de Asistencia</h5>
+                        <p>Registra y monitorea la asistencia de manera eficiente.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="bi bi-book"></i>
+                        <h5>Materiales del Curso</h5>
+                        <p>Accede fácilmente a los contenidos de tus asignaturas desde cualquier dispositivo.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="bi bi-bar-chart-line"></i>
+                        <h5>Seguimiento del Progreso</h5>
+                        <p>Visualiza el rendimiento académico a través de estadísticas claras y detalladas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div id="testimonials" class="section testimonials">
+        <h2>Testimonios</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <p><i class="bi bi-quote"></i> Metamath ha transformado la forma en que organizo mis clases. ¡Es intuitivo y muy útil!</p>
+                        <p><strong>— Prof. Ana Rodríguez</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <p><i class="bi bi-quote"></i> Gracias a Metamath, puedo ver cómo voy avanzando en tiempo real. Me motiva mucho.</p>
+                        <p><strong>— Daniel Guerrero, estudiante</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <p><i class="bi bi-quote"></i> La plataforma es muy fácil de usar y me permite acceder a todos los materiales rápidamente.</p>
+                        <p><strong>— Juan Jose Torres, estudiante</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <p><i class="bi bi-quote"></i> Como docente, valoro mucho las estadísticas claras sobre el progreso de mis alumnos.</p>
+                        <p><strong>— Prof. Javier Gómez</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <p><i class="bi bi-quote"></i> Metamath me ayuda a mantenerme organizado y nunca olvido una tarea o asistencia.</p>
+                        <p><strong>— Saray Santos, estudiante</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <p><i class="bi bi-quote"></i> Metamath ha sido una herramienta fundamental para mantenerme al día con mis estudios. ¡La recomiendo totalmente! digo, digo xes</p>
+                        <p><strong>— Samuel E. González</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                
+
+    <!-- Call to Action Section -->
+    <div class="cta-section">
+        <h2>¡Empieza hoy con Metamath!</h2>
+        <p>Únete a miles de estudiantes y docentes que ya están revolucionando su aprendizaje.</p>
+        <a href="{% url 'std_login' %}" class="btn btn-login animate__animated animate__zoomIn">Ingresar</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Metamath. Todos los derechos reservados.</p>
+        <div class="social-icons">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

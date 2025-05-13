@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Log in | MetaMath</title>
+      <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+      <style>
+         /* General styles */
+         body {
+            background-color: #E3F2FD; /* Light pastel blue */
+            font-family: 'Nunito', sans-serif; /* Softer font */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+         }
+         .login-container {
+            background-color: #FFFFFF; /* White background */
+            border-radius: 1rem; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+         }
+         .login-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+         }
+         .login-header h2 {
+            color: #1565C0; /* Dark pastel blue */
+            font-weight: bold;
+         }
+         .form-group {
+            margin-bottom: 1.5rem;
+         }
+         .form-group label {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            color: #1E88E5; /* Bright pastel blue */
+         }
+         .form-group input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #BBDEFB; /* Light pastel blue border */
+            border-radius: 0.5rem; /* Rounded input fields */
+         }
+         .btn-login {
+            background-color: #64B5F6; /* Soft pastel blue */
+            border: none;
+            color: white;
+            padding: 0.75rem;
+            width: 100%;
+            border-radius: 2rem; /* Fully rounded button */
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+         }
+         .btn-login:hover {
+            background-color: #42A5F5; /* Slightly darker pastel blue */
+         }
+         .btn-secondary {
+            background-color: #BBDEFB; /* Light pastel blue */
+            border: none;
+            color: #1565C0; /* Dark pastel blue */
+            padding: 0.5rem 1rem;
+            border-radius: 2rem; /* Fully rounded button */
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            width: 100%;
+         }
+         .btn-secondary:hover {
+            background-color: #90CAF9; /* Slightly darker pastel blue */
+         }
+         .footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #78909C; /* Soft gray */
+         }
+      </style>
+      <script>
+         document.addEventListener('DOMContentLoaded', function () {
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordField = document.querySelector('input[name="password"]');
+      
+            togglePassword.addEventListener('click', function () {
+               const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+               passwordField.setAttribute('type', type);
+               this.textContent = type === 'password' ? 'Mostrar' : 'Ocultar';
+            });
+         });
+      </script>
+   </head>
+   <body>
+      <div class="login-container">
+         <div class="login-header">
+            <h2>Ingresa a MetaMath</h2>
+         </div>
+         <form method="POST" id="login-form">
+            {% csrf_token %}
+            <div class="form-group">
+               <label for="{{ form.id.id_for_label }}">
+                  <span class="material-symbols-outlined me-2">person</span> Usuario
+               </label>
+               {{ form.id }}
+            </div>
+            <div class="form-group">
+               <label for="{{ form.password.id_for_label }}">
+                  <span class="material-symbols-outlined me-2">lock</span> Contraseña
+               </label>
+               <div class="input-group">
+                  <input type="password" name="{{ form.password.name }}" id="{{ form.password.id_for_label }}" class="form-control" />
+                  <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                     Mostrar
+                  </button>
+               </div>
+            </div>
+            <button class="btn btn-login" type="submit">Entrar</button>
+         </form>
+         <div class="text-center mt-3">
+            <button class="btn btn-secondary mb-2" onclick="window.location.href='/admin';">Entrar como Admin</button>
+            <button class="btn btn-secondary" onclick="window.location.href='/landing';">Volver a la página inicial</button>
+         </div>
+         {% if error_messages %}
+         <div class="alert alert-danger alert-dismissible fade show mt-3">
+            {% for message in error_messages %}
+            {{ message }}
+            {% endfor %}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+         </div>
+         {% endif %}
+         <div class="footer">
+            <p>© 2024-2025 Metamath. Todos los derechos reservados.</p>
+            <p>Recuerda que si eres estudiante debes usar el ID que te dió tu profesor.</p>
+         </div>
+      </div>
+      <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+   </body>
+</html>
