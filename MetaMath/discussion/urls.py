@@ -3,6 +3,6 @@ from . import views
 
 urlpatterns = [
     path('discussion/<int:code>', views.discussion, name='discussion'),
-    path('send/<int:code>/<int:std_id>', views.send, name='send'),
-    path('message/<int:code>/<int:fac_id>', views.send_fac, name='send_fac'),
+    path('send/<str:code>/<str:std_id>', views.send, name='send'),
+    path('message/<str:code>/<str:fac_id>', views.send_fac, name='send_fac'),
 ]

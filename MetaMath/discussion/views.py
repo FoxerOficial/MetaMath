@@ -1,7 +1,6 @@
 from django.shortcuts import redirect, render
 from discussion.models import FacultyDiscussion, StudentDiscussion
 from main.models import Student, Faculty, Course
-from main.views import is_faculty_authorised, is_student_authorised
 from itertools import chain
 from .forms import StudentDiscussionForm, FacultyDiscussionForm
 
@@ -33,10 +32,10 @@ def context_list(course):
 
 
 def discussion(request, code):
-    if is_student_authorised(request, code):
-        course = Course.objects.get(code=code)
+    course = Course.objects.get(code=code)
+    discussions = context_list(course)
+    if 'student_id' in request.session:
         student = Student.objects.get(student_id=request.session['student_id'])
-        discussions = context_list(course)
         form = StudentDiscussionForm()
         context = {
             'course': course,
@@ -46,10 +45,8 @@ def discussion(request, code):
         }
         return render(request, 'discussion/discussion.html', context)
 
-    elif is_faculty_authorised(request, code):
-        course = Course.objects.get(code=code)
+    elif 'faculty_id' in request.session:
         faculty = Faculty.objects.get(faculty_id=request.session['faculty_id'])
-        discussions = context_list(course)
         form = FacultyDiscussionForm()
         context = {
             'course': course,
@@ -63,44 +60,82 @@ def discussion(request, code):
 
 
 def send(request, code, std_id):
-    if is_student_authorised(request, code):
-        if request.method == 'POST':
-            form = StudentDiscussionForm(request.POST)
-            if form.is_valid():
-                content = form.cleaned_data['content']
-                course = Course.objects.get(code=code)
-                try:
-                    student = Student.objects.get(student_id=std_id)
-                except:
-                    return redirect('discussion', code=code)
+    course = Course.objects.get(code=code)
+    try:
+        student = Student.objects.get(student_id=std_id)
+    except:
+        return redirect('discussion', code=code)
+    if request.method == 'POST':
+        form = StudentDiscussionForm(request.POST)
+        if form.is_valid():
+            content = form.cleaned_data['content']
+            try:
                 StudentDiscussion.objects.create(
                     content=content, course=course, sent_by=student)
-                return redirect('discussion', code=code)
-            else:
-                return redirect('discussion', code=code)
-        else:
+            except Exception as e:
+                discussions = context_list(course)
+                form = StudentDiscussionForm(request.POST)
+                context = {
+                    'course': course,
+                    'student': student,
+                    'discussions': discussions,
+                    'form': form,
+                    'form_errors': form.errors,
+                    'error_message': str(e),
+                }
+                return render(request, 'discussion/discussion.html', context)
             return redirect('discussion', code=code)
+        else:
+            discussions = context_list(course)
+            form = StudentDiscussionForm(request.POST)
+            context = {
+                'course': course,
+                'student': student,
+                'discussions': discussions,
+                'form': form,
+                'form_errors': form.errors,
+            }
+            return render(request, 'discussion/discussion.html', context)
     else:
-        return render(request, 'std_login.html')
+        return redirect('discussion', code=code)
 
 
 def send_fac(request, code, fac_id):
-    if is_faculty_authorised(request, code):
-        if request.method == 'POST':
-            form = FacultyDiscussionForm(request.POST)
-            if form.is_valid():
-                content = form.cleaned_data['content']
-                course = Course.objects.get(code=code)
-                try:
-                    faculty = Faculty.objects.get(faculty_id=fac_id)
-                except:
-                    return redirect('discussion', code=code)
+    course = Course.objects.get(code=code)
+    try:
+        faculty = Faculty.objects.get(faculty_id=fac_id)
+    except:
+        return redirect('discussion', code=code)
+    if request.method == 'POST':
+        form = FacultyDiscussionForm(request.POST)
+        if form.is_valid():
+            content = form.cleaned_data['content']
+            try:
                 FacultyDiscussion.objects.create(
                     content=content, course=course, sent_by=faculty)
-                return redirect('discussion', code=code)
-            else:
-                return redirect('discussion', code=code)
-        else:
+            except Exception as e:
+                discussions = context_list(course)
+                form = FacultyDiscussionForm(request.POST)
+                context = {
+                    'course': course,
+                    'faculty': faculty,
+                    'discussions': discussions,
+                    'form': form,
+                    'form_errors': form.errors,
+                    'error_message': str(e),
+                }
+                return render(request, 'discussion/discussion.html', context)
             return redirect('discussion', code=code)
+        else:
+            discussions = context_list(course)
+            form = FacultyDiscussionForm(request.POST)
+            context = {
+                'course': course,
+                'faculty': faculty,
+                'discussions': discussions,
+                'form': form,
+                'form_errors': form.errors,
+            }
+            return render(request, 'discussion/discussion.html', context)
     else:
-        return render(request, 'std_login.html')
+        return redirect('discussion', code=code)

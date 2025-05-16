@@ -139,10 +139,10 @@ PASSWORD_HASHERS = [
 
 LANGUAGE_CODE = 'es-CO'
 
-TIME_ZONE = 'America/Bogota'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
-USE_TZ = False
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)

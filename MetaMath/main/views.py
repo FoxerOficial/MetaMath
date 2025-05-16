@@ -39,7 +39,6 @@ def is_faculty_authorised(request, code):
     else:
         return False
 
-
 # Custom Login page for both student and faculty
 def std_login(request):
     error_messages = []
