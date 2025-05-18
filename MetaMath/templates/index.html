@@ -19,7 +19,7 @@
       {{ form.media }}
       <style>
          :root {
-            --mm-blue1: #9ec1d3;   /* leftmost */
+            --mm-blue1:rgb(119, 147, 161);   /* leftmost */
             --mm-blue2: #c7d3e3;
             --mm-blue3: #25304a;   /* even darker for text */
             --mm-blue4: #b3cde3;
@@ -28,7 +28,8 @@
             --mm-purple: #b6b8d6;
          }
          body {
-            background: linear-gradient(120deg, var(--mm-blue5) 0%, var(--mm-blue2) 100%);
+            background: url("{% static 'images/lol.svg' %}") no-repeat center center fixed;
+            background-size: cover;
             min-height: 100vh;
             font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
             color: var(--mm-blue3);
@@ -245,7 +246,6 @@
       </main>
       <footer class="pastel-footer">
          <div>
-            MetaMath &copy; {{ now|date:"Y" }} &mdash; Un proyecto educativo con amor y tecnología.
          </div>
       </footer>
       <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>

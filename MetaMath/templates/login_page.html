@@ -12,7 +12,8 @@
       <style>
          /* General styles */
          body {
-            background-color: #E3F2FD; /* Light pastel blue */
+            background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("{% static 'images/xd.png' %}") no-repeat center center fixed;
+            background-size: cover;
             font-family: 'Nunito', sans-serif; /* Softer font */
             display: flex;
             justify-content: center;
@@ -21,7 +22,7 @@
             margin: 0;
          }
          .login-container {
-            background-color: #FFFFFF; /* White background */
+            background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white background */
             border-radius: 1rem; /* Rounded corners */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
             padding: 2rem;
@@ -33,7 +34,7 @@
             margin-bottom: 1.5rem;
          }
          .login-header h2 {
-            color: #1565C0; /* Dark pastel blue */
+            color: #7e57c2; /* Pastel purple */
             font-weight: bold;
          }
          .form-group {
@@ -43,16 +44,17 @@
             display: flex;
             align-items: center;
             font-size: 1.2rem;
-            color: #1E88E5; /* Bright pastel blue */
+            color: #9575cd; /* Pastel purple */
          }
          .form-group input {
             width: 100%;
             padding: 0.5rem;
-            border: 1px solid #BBDEFB; /* Light pastel blue border */
+            border: 1px solid #d1c4e9; /* Pastel purple border */
             border-radius: 0.5rem; /* Rounded input fields */
+            background-color: #f3e5f5; /* Light pastel purple background */
          }
          .btn-login {
-            background-color: #64B5F6; /* Soft pastel blue */
+            background-color: #b39ddb; /* Pastel purple */
             border: none;
             color: white;
             padding: 0.75rem;
@@ -61,29 +63,31 @@
             font-weight: bold;
             text-transform: uppercase;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            transition: background-color 0.3s ease;
          }
          .btn-login:hover {
-            background-color: #42A5F5; /* Slightly darker pastel blue */
+            background-color: #9575cd; /* Slightly darker pastel purple */
          }
          .btn-secondary {
-            background-color: #BBDEFB; /* Light pastel blue */
+            background-color: #d1c4e9; /* Light pastel purple */
             border: none;
-            color: #1565C0; /* Dark pastel blue */
+            color: #7e57c2; /* Pastel purple */
             padding: 0.5rem 1rem;
             border-radius: 2rem; /* Fully rounded button */
             font-weight: bold;
             text-transform: uppercase;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
             width: 100%;
+            transition: background-color 0.3s ease;
          }
          .btn-secondary:hover {
-            background-color: #90CAF9; /* Slightly darker pastel blue */
+            background-color: #b39ddb; /* Slightly darker pastel purple */
          }
          .footer {
             text-align: center;
             margin-top: 1.5rem;
             font-size: 0.9rem;
-            color: #78909C; /* Soft gray */
+            color: #9575cd; /* Pastel purple */
          }
       </style>
       <script>

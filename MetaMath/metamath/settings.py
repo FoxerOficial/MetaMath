@@ -139,7 +139,7 @@ PASSWORD_HASHERS = [
 
 LANGUAGE_CODE = 'es-CO'
 
-TIME_ZONE = 'America/New_York'
+TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
 USE_TZ = True

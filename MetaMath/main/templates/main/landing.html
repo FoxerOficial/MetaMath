@@ -34,13 +34,13 @@
         .navbar-brand:hover {
             color:rgb(48, 56, 100);
         }
-        .hero-section {
-            text-align: center;
-            padding: 150px 20px;
-            background: url("https://source.unsplash.com/1600x900/?education,learning") no-repeat center center/cover;
-            color: #fff;
-            position: relative;
-        }
+    .hero-section {
+        text-align: center;
+        padding: 150px 20px;
+        background: url("{% static 'images/xd.png' %}") no-repeat center center/cover;
+        color: #fff;
+        position: relative;
+    }
         .hero-section::after {
             content: '';
             position: absolute;
@@ -297,6 +297,39 @@
         <h2>¡Empieza hoy con Metamath!</h2>
         <p>Únete a miles de estudiantes y docentes que ya están revolucionando su aprendizaje.</p>
         <a href="{% url 'std_login' %}" class="btn btn-login animate__animated animate__zoomIn">Ingresar</a>
+    </div>
+
+    <!-- Nuestra Comunidad Section -->
+    <div id="community" class="section" style="background-color: #f0f0f0;">
+        <h2>Nuestra Comunidad</h2>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm border-0">
+                        <img src="{% static 'images/Boarding-school-boy.jpg' %}" class="card-img-top rounded" alt="Estudiante sonriente en el aula" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <p class="card-text">Estudiantes motivados y felices aprendiendo juntos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm border-0">
+                        <img src="{% static 'images/R (2).jpg' %}" class="card-img-top rounded" alt="Estudiantes estudiando juntos" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <p class="card-text">Colaboración y trabajo en equipo para el éxito académico.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm border-0">
+                        <img src="{% static 'images/school-stationary-on-wooden-table-free-photo.jpg' %}" class="card-img-top rounded" alt="Materiales escolares" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <p class="card-text">Recursos y materiales para apoyar el aprendizaje.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->
