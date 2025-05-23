@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from . models import Attendance
+from .models import Attendance
 from main.models import Student, Course, Faculty
 from main.views import is_faculty_authorised
 
@@ -19,20 +19,18 @@ def createRecord(request, code):
             date = request.POST['dateCreate']
             course = Course.objects.get(code=code)
             students = Student.objects.filter(course__code=code)
-            # check if attendance record already exists for the date
+            # Prevent duplicate records
             if Attendance.objects.filter(date=date, course=course).exists():
-                return render(request, 'attendance/attendance.html', {'code': code, 'students': students, 'course': course, 'faculty': Faculty.objects.get(course=course), 'error': "Attendance record already exists for the date " + date})
+                messages.error(request, f"Attendance record already exists for the date {date}")
             else:
                 for student in students:
-                    attendance = Attendance(
-                        student=student, course=course, date=date, status=False)
-                    attendance.save()
-
-                messages.success(
-                    request, 'Attendance record created successfully for the date ' + date)
-                return redirect('/attendance/' + str(code))
+                    Attendance.objects.create(
+                        student=student, course=course, date=date, status=False
+                    )
+                messages.success(request, f'Attendance record created successfully for the date {date}')
+            return redirect('attendance', code=code)
         else:
-            return redirect('/attendance/' + str(code))
+            return redirect('attendance', code=code)
     else:
         return redirect('std_login')
 
@@ -63,16 +61,27 @@ def submitAttendance(request, code):
                 date = request.POST['datehidden']
                 for student in students:
                     attendance, created = Attendance.objects.get_or_create(
-                        student=student, course=course, date=date)
-                    if request.POST.get(str(student.student_id)) == '1':
-                        attendance.status = True
-                    else:
-                        attendance.status = False
+                        student=student, course=course, date=date
+                    )
+                    # Use '1' for present, else absent
+                    attendance.status = request.POST.get(str(student.student_id)) == '1'
                     attendance.save()
-                messages.success(
-                    request, 'Attendance record submitted successfully for the date ' + date)
-                return redirect('/attendance/' + str(code))
+                messages.success(request, f'Attendance record submitted successfully for the date {date}')
+                return redirect('attendance', code=code)
             else:
-                return render(request, 'attendance/attendance.html', {'code': code, 'students': students, 'course': course, 'faculty': Faculty.objects.get(course=course)})
+                return render(request, 'attendance/attendance.html', {
+                    'code': code,
+                    'students': students,
+                    'course': course,
+                    'faculty': Faculty.objects.get(course=course)
+                })
         except Exception as e:
-            return render(request, 'attendance/attendance.html', {'code': code, 'error': f"Error! Could not save: {str(e)}", 'students': students, 'course': course, 'faculty': Faculty.objects.get(course=course)})
+            messages.error(request, f"Error! Could not save: {str(e)}")
+            return render(request, 'attendance/attendance.html', {
+                'code': code,
+                'students': students,
+                'course': course,
+                'faculty': Faculty.objects.get(course=course)
+            })
+    else:
+        return redirect('std_login')

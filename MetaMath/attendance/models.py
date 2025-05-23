@@ -16,17 +16,7 @@ class Attendance(models.Model):
         return self.student.name + ' - ' + self.course.name + ' - ' + self.date.strftime('%d-%m-%Y')
 
     def total_absent(self):
-        attendance = Attendance.objects.filter(
-            student=self.student, status=False).count()
-        if attendance == 0:
-            return attendance
-        else:
-            return attendance - 1
+        return Attendance.objects.filter(student=self.student, status=False).count()
 
     def total_present(self):
-        present = Attendance.objects.filter(
-            student=self.student, status=True).count()
-        if present == 0:
-            return present
-        else:
-            return present - 1
+        return Attendance.objects.filter(student=self.student, status=True).count()

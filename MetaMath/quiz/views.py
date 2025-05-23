@@ -67,7 +67,7 @@ def allQuizzes(request, code):
         quizzes = Quiz.objects.filter(course=course)
         for quiz in quizzes:
             quiz.total_questions = Question.objects.filter(quiz=quiz).count()
-            if quiz.start < datetime.datetime.now():
+            if quiz.start < timezone.now():
                 quiz.started = True
             else:
                 quiz.started = False
@@ -136,7 +136,24 @@ def startQuiz(request, code, quiz_id):
             marks += question.marks
         quiz.total_marks = marks
 
-        return render(request, 'quiz/portalStdNew.html', {'course': course, 'quiz': quiz, 'questions': questions, 'total_questions': total_questions, 'student': Student.objects.get(student_id=request.session['student_id'])})
+        # Format duration as "X day(s), HH:MM:SS"
+        duration = quiz.end - quiz.start
+        days = duration.days
+        hours, remainder = divmod(duration.seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
+        if days > 0:
+            duration_str = f"{days} day{'s' if days > 1 else ''}, {hours:02}:{minutes:02}:{seconds:02}"
+        else:
+            duration_str = f"{hours:02}:{minutes:02}:{seconds:02}"
+        
+        return render(request, 'quiz/portalStdNew.html', {
+            'course': course,
+            'quiz': quiz,
+            'questions': questions,
+            'total_questions': total_questions,
+            'student': Student.objects.get(student_id=request.session['student_id']),
+            'duration_str': duration_str,  # <-- add this
+        })
     else:
         return redirect('std_login')
 
@@ -254,5 +271,4 @@ def quizSummary(request, code, quiz_id):
 
     else:
         return redirect('std_login')
-
 

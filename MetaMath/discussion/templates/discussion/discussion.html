@@ -1,5 +1,6 @@
 {% extends 'index.html' %}
 {% load static %}
+{% load tz %}
 {% block title %}Discusiones | {{ course.name }} {% endblock title %}
 {% block profile %}
 {% if faculty  %} {% url 'profile' faculty.faculty_id %}
@@ -77,7 +78,9 @@
                   {% else %}
                   <span class="fw-bold">{{discussion.sent_by}}</span>
                   {% endif %}
-                  <span class="text-muted mx-2" style="font-size:smaller">{{ discussion.time }}</span>
+                  <span class="text-muted mx-2" style="font-size:smaller">
+    {{ discussion.sent_at|localtime|date:"d M Y, h:i A" }}
+</span>
                   <p class="text-wrap text-break my-2 px-2">{{discussion.content}}
                   </p>
                </div>
