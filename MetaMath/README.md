@@ -76,3 +76,39 @@ Inicia sesión como administrador y añade algunos cursos, profesores y estudian
 ## Licencia
 
 [Licencia MIT (MIT)](https://github.com/nz-m/eLMS-SWE/blob/main/LICENCE)
+
+
+Mis agradecimientos para las personas que me apoyaron tanto con el proyecto como emocionalmente <i class="bi bi-chevron-down"></i>
+                </a>
+            </strong>
+            <div class="collapse mt-2" id="agradecimientosCollapse">
+                <ul class="list-unstyled mb-0">
+                    <li>• Jesucristo</li>
+                    <li>• Juan Camilo Giraldo (Top analistas, en serio, gracias milo :D)</li>
+                    <li>• Neaz Mahmud (Creador de ELMS-swe, la base de mi proyecto)</li>
+                    <li>• Brayandiazc (Aprendiendo JavaScript)</li>
+                    <li>• Franlu (Programación y Lenguaje de Marcas)</li>
+                    <li>• Enflujo (Programación Creativa)</li>
+                    <li>• Datauy (Elijo Estudiar)</li>
+                    <li>• Tareas Plus (Matemáticas y Física)</li>
+                    <li>• Julio Profe (Matemáticas y Física)</li>
+                    <li>• CrashCourse (Educación académica en múltiples disciplinas)</li>
+                    <li>• Educatina (Videos educativos en diversas materias)</li>
+                    <li>• Khan Academy (Recursos educativos gratuitos)</li>
+                    <li>• SamuNoHDMI  (Gracias por esas sugerencias en febrero mano, de veras)</li>
+                    <li>• Juan Carlos Jaramillo</li>
+                    <li>• Torres</li>
+                    <li>• Romero</li>
+                    <li>• Stefany</li>
+                    <li>• Daniel</li>
+                    <li>• Saray</li>
+                    <li>• Jorge David</li>
+                    <li>• Toñiro</li>
+                    <li>• Hurto Calificado (Hurtado)</li>
+                    <li>• Alexandra Landázuri</li>
+                    <li>• Uladislao Bravo</li>
+                    <li>• Copilot (Microsoft)</li>
+                    <li>• Copilot (GitHub)</li>
+                    <li>• Y muchas personas más</li>
+                </ul>
+            </div>
