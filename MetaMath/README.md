@@ -85,7 +85,7 @@ Mis agradecimientos para las personas que me apoyaron tanto con el proyecto como
                 <ul class="list-unstyled mb-0">
                     <li>• Jesucristo</li>
                     <li>• Juan Camilo Giraldo (Top analistas, en serio, gracias milo :D)</li>
-                    <li>• Neaz Mahmud (Creador de ELMS-swe, la base de mi proyecto)</li>
+                    <li>• Neaz Mahmud (Creador de ELMS-swe, Base)</li>
                     <li>• Brayandiazc (Aprendiendo JavaScript)</li>
                     <li>• Franlu (Programación y Lenguaje de Marcas)</li>
                     <li>• Enflujo (Programación Creativa)</li>
