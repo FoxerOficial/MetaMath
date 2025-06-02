@@ -18,8 +18,7 @@
    <div class="container shadow-sm">
       <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
          <ol class="breadcrumb p-3">
-            <li class="breadcrumb-item fw-bold"><a style="color: rgb(10, 10, 48)" href="{% url 'facultyCourses' %}">My
-               Courses</a>
+            <li class="breadcrumb-item fw-bold"><a style="color: rgb(10, 10, 48)" href="{% url 'facultyCourses' %}">Mis Cursos</a>
             </li>
             <li class="breadcrumb-item fw-bold"><a style="color: rgb(10, 10, 48)"
                href="{% url 'course' course.code %}">{{ course.name }}</a></li>
@@ -29,18 +28,18 @@
    </div>
    <!-- navigation links end -->
    <div class="container">
-      <h6 class="fw-bold"> Active Quizzes </h6>
+      <h6 class="fw-bold"> Quizzes Activos </h6>
       <div class="table-responsive animate__animated animate__fadeIn">
          <table class="table text-center shadow" style="white-space: nowrap;">
             {% if active_quizzes %}
             <thead class="bg-dark text-light">
                <tr>
-                  <th scope="col">SL</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Starts</th>
-                  <th scope="col">Ends</th>
-                  <th scope="col">Questions</th>
-                  <th scope="col">Total Marks</th>
+                  <th scope="col">N°</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Comienza</th>
+                  <th scope="col">Termina</th>
+                  <th scope="col">Preguntas</th>
+                  <th scope="col">Puntaje Total</th>
                </tr>
             </thead>
             <tbody class="">
@@ -54,30 +53,30 @@
                   <td>{{quiz.total_questions}}</td>
                   <td>{{quiz.total_marks}}</td>
                   {% else %}
-                  <td class="text-center">Questions not set yet</td>
+                  <td class="text-center">Preguntas no asignadas aún</td>
                   <td class="text-center">0</td>
                   {% endif %}
                </tr>
                {% endfor %}
                {% else %}
                <tr>
-                  <th class="text-center">No active quizzes available</th>
+                  <th class="text-center">No hay quizzes activos disponibles</th>
                </tr>
                {% endif %}
             </tbody>
          </table>
       </div>
-      <h6 class="fw-bold"> Previous Quizzes </h6>
+      <h6 class="fw-bold"> Quizzes Anteriores </h6>
       <div class="table-responsive animate__animated animate__fadeIn">
          <table class="table text-center shadow" style="white-space: nowrap;">
             {% if previous_quizzes %}
             <thead class="bg-dark text-light">
                <tr>
-                  <th scope="col">SL</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Ended</th>
-                  <th scope="col">Marks</th>
-                  <th scope="col">Percentage</th>
+                  <th scope="col">N°</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Finalizó</th>
+                  <th scope="col">Puntaje</th>
+                  <th scope="col">Porcentaje</th>
                </tr>
             </thead>
             <tbody class="">
@@ -100,7 +99,7 @@
                      {{quizP.title}}
                   </td>
                   <td>{{quizP.ends}}</td>
-                  <td colspan="2" class="text-center"> <span class="text-dark bg-warning bg-opacity-25 fw-bold rounded px-3 py-1" style="font-size:smaller">Not Published</span></td>
+                  <td colspan="2" class="text-center"> <span class="text-dark bg-warning bg-opacity-25 fw-bold rounded px-3 py-1" style="font-size:smaller">No publicado</span></td>
                </tr>
                {% endif %}
                {% else %}
@@ -110,13 +109,13 @@
                      {{quizP.title}}
                   </td>
                   <td>{{quizP.ends}}</td>
-                  <td colspan="2" class="text-center"> <span class="text-light bg-danger fw-bold rounded px-2 py-1" style="font-size:smaller">Did not attempt</span></td>
+                  <td colspan="2" class="text-center"> <span class="text-light bg-danger fw-bold rounded px-2 py-1" style="font-size:smaller">No intentado</span></td>
                </tr>
                {% endif %}
                {% endfor %}
                {% else %}
                <tr>
-                  <th scope="col" class="text-center">No previous quiz attempts</th>
+                  <th scope="col" class="text-center">No hay intentos de quizzes anteriores</th>
                </tr>
                {% endif %}
             </tbody>
@@ -130,7 +129,6 @@
          $(this).addClass('bg-warning bg-opacity-10');
       }, function () {
          $(this).removeClass('bg-warning bg-opacity-10');
-   
       });
    });
 </script>

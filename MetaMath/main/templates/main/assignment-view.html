@@ -44,7 +44,7 @@
       Descargar</a></label><br>
       {% endif %}
       <label class="p-2 fw-bold" for="">
-      Submitted : {{assignment.submission_set.count}}/{{totalStudents}}
+      Subido por : {{assignment.submission_set.count}}/{{totalStudents}}
       </label><br>
       <label class="p-2 fw-bold" for="">Tiempo restante : <span class="fw-semibold" id="timeRemain"></span></label>
    </div>
@@ -65,7 +65,7 @@
          </thead>
          <tbody>
             {% if not submissions %}
-            <td class="text-center text-muted fst-italic" colspan="6">No one has submitted yet</th>
+            <td class="text-center text-muted fst-italic" colspan="6">Nadie ha subido nada, aun.</th>
                {% else %}
                {% for submission in submissions %}
             <tr>
@@ -76,7 +76,7 @@
                <td class="text-center"><a
                   class="fw-bold px-2 py-1 text-primary bg-primary bg-opacity-10 border border-priamry border-opacity-10 rounded-2"
                   style="text-decoration: none; font-size: smaller !important" download
-                  href="{{submission.file.url}}">Download</a></td>
+                  href="{{submission.file.url}}">Descargar</a></td>
                <td class="text-center">{{submission.submission_date}}</td>
                {% if submission %}
                <td class="text-center" style="min-width: 150px;">
@@ -85,8 +85,9 @@
                      {% csrf_token %}
                      <div class="d-flex justify-content-center">
                         <div class="form-group">
-                           <input class="form-control text-center" type="number" placeholder="Marks" name="marks" id="marks"
+                           <input class="form-control text-center" type="number" placeholder="Nota" name="marks" id="marks"
                               max="{{ assignment.marks}}" step=".1" min="0" value="{{submission.marks}}" required>
+                           <span class="ms-2">Actual: <strong>{{submission.marks}}</strong></span>
                         </div>
                         <button
                            type="submit" class="btn btn-sm ms-2 rounded-2"><img
@@ -100,7 +101,7 @@
                {% csrf_token %}
                <div class="d-flex justify-content-center">
                <div class="form-group">
-               <input class="form-control text-center" type="number" placeholder="Marks" name="marks" id="marks"
+               <input class="form-control text-center" type="number" placeholder="Nota" name="marks" id="marks"
                   max="{{ assignment.marks}}" step=".1" min="0" required value="{{submission.marks}}"></div><button type="submit"
                   class="btn btn-outline-primary btn-sm ms-2"><img
                   src="{% static 'images/icon/check.png' %}" alt="set" style="height:1rem"></button>

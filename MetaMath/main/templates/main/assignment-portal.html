@@ -1,4 +1,5 @@
 {% extends 'index.html' %}
+{% load assignment_extras %}
 {% block title %} {{ assignment.title }} - Metamath {% endblock title %}
 {% block profile %}
 {% url 'profile' student.student_id %}
@@ -34,7 +35,7 @@
       <h4>{{assignment.title}}</h4>
       <div class="p-2 text-break">{% autoescape off %}{{assignment.description}}{% endautoescape %}</div>
       <h6 class="p-2 fw-bold">Fecha de entrega limite: <span class="px-2 text-danger"> {{assignment.post_date}} </span></h6>
-      <label class="p-2 fw-bold" for="">Marcas de actividad: </label>
+      <label class="p-2 fw-bold" for="">Nota maxima de actividad: </label>
       <span style="color: black;" class="p-2 fw-bold">{{assignment.marks}}</span><br>
       {% if assignment.file %}
       <label class="p-2 fw-bold" for="">Archivo adjunto: &nbsp <a
@@ -47,10 +48,12 @@
       {% endif %}
       {% if submission.status %}
       <label class="p-2 fw-bold" for="">Estado: </label>
-      <span class="p-2 fw-bold text-success">{{submission.status}} {{submission.time_difference}} temprano!</span><br>
+      <span class="p-2 fw-bold text-success">
+         {{ submission.status|estado_es }} {{ submission.time_difference|estado_es }} antes!
+      </span><br>
       {% else %}
       <label class="p-2 fw-bold" for="">Estado: </label>
-      <span style="color: red;" class="p-2 fw-bold">pendiente!</span><br>
+      <span style="color: red;" class="p-2 fw-bold">¡Aun pendiente!</span><br>
       {% endif %}
       {% if submission.marks %}
       <label class="p-2 fw-bold" for="">Nota: </label>
@@ -101,7 +104,7 @@
    
        if (difference < 0) {
            clearInterval(rand);
-           document.getElementById("timeRemain").innerHTML = "Closed!";
+           document.getElementById("timeRemain").innerHTML = "¡Cerrado!";
            document.getElementById("timeRemain").style.color = "red";
            document.getElementById("fileSubmit").style.display = 'none';
        }

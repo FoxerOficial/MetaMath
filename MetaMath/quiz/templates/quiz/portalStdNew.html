@@ -18,65 +18,64 @@
 <div class="container shadow-sm">
    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
       <ol class="breadcrumb p-3">
-         <li class="breadcrumb-item fw-bold"><a style="color: rgb(10, 10, 48)" href="{% url 'facultyCourses' %}">My
-            Courses</a>
+         <li class="breadcrumb-item fw-bold"><a style="color: rgb(10, 10, 48)" href="{% url 'facultyCourses' %}">Mis Cursos</a>
          </li>
          <li class="breadcrumb-item fw-bold"><a style="color: rgb(10, 10, 48)"
             href="{% url 'course' course.code %}">{{ course.name }}</a></li>
-            <li class="breadcrumb-item fw-bold"><a style="color: rgb(10, 10, 48)"
-               href="{% url 'myQuizzes' course.code %}">Quizzes</a></li>
-               <li class="breadcrumb-item active animate__animated animate__backInRight" aria-current="page">{{quiz.title}}</li>
-            </ol>
-         </nav>
-      </div>
-      <!-- navigation links end -->
-      <div class="container pt-2 shadow rounded">
-         <div class="p-3 mb-3" id="containerSec">
-            <div class="row">
-               <div class="col-md-12 text-center">
-                  <p class="fw-bold fs-5" style="color:navy"> {{quiz.title}}</p>
-                  <p class=" text-secondary">
-                     {{quiz.description}}
-                  </p>
-                  <p><span class="material-symbols-outlined inline-icons me-2">
-                     format_list_numbered
-                     </span>Total Questions : <span class="fw-bold">{{ total_questions }}</span></p>
-                  <p><span class="material-symbols-outlined inline-icons me-2">
-                     military_tech
-                     </span>Total Marks : <span class="fw-bold">{{quiz.total_marks}}</span></p>
-                  <p class="fs-6">
-  <span class="material-symbols-outlined inline-icons me-2">timelapse</span>
-  Duration : <span class="fw-bold">{{ duration_str }}</span>
-</p>
-                  <p class ="animate__animated animate__heartBeat fs-2 fw-bold text-success timer d-none" id="start">Started!</p>
-                  {% comment %}starting timer{% endcomment %}
+         <li class="breadcrumb-item fw-bold"><a style="color: rgb(10, 10, 48)"
+            href="{% url 'myQuizzes' course.code %}">Quizzes</a></li>
+         <li class="breadcrumb-item active animate__animated animate__backInRight" aria-current="page">{{quiz.title}}</li>
+      </ol>
+   </nav>
+</div>
+<!-- navigation links end -->
+<div class="container pt-2 shadow rounded">
+   <div class="p-3 mb-3" id="containerSec">
+      <div class="row">
+         <div class="col-md-12 text-center">
+            <p class="fw-bold fs-5" style="color:navy"> {{quiz.title}}</p>
+            <p class=" text-secondary">
+               {{quiz.description}}
+            </p>
+            <p><span class="material-symbols-outlined inline-icons me-2">
+               format_list_numbered
+               </span>Total de preguntas : <span class="fw-bold">{{ total_questions }}</span></p>
+            <p><span class="material-symbols-outlined inline-icons me-2">
+               military_tech
+               </span>Puntaje total : <span class="fw-bold">{{quiz.total_marks}}</span></p>
+            <p class="fs-6">
+              <span class="material-symbols-outlined inline-icons me-2">timelapse</span>
+              Duración : <span class="fw-bold">{{ duration_str }}</span>
+            </p>
+            <p class ="animate__animated animate__heartBeat fs-2 fw-bold text-success timer d-none" id="start">¡Iniciado!</p>
+            {% comment %}starting timer{% endcomment %}
             <div class="container fs-2 d-flex flex-column" id="StartdaysSectionDV">
                <div class="text-center fs-6 d-inline-block fw-bold">
-                  <span class="text-muted startCon">STARTS IN</span>
+                  <span class="text-muted startCon">INICIA EN</span>
                </div>
                <div class="text-center startCon">
                   <div class="d-inline-block">
                      <div class="d-flex flex-column">
                         <span class="timer" id="Startdays"></span>
-                        <span class="text-start fw-bold text-muted" style="font-size: 11px;">DAYS</span>
+                        <span class="text-start fw-bold text-muted" style="font-size: 11px;">DÍAS</span>
                      </div>
                   </div>
                   <div class="d-inline-block">
                      <div class="d-flex flex-column">
                         <span class="timer" id="Starthours"></span>
-                        <span class="text-start fw-bold text-muted" style="font-size: 11px;">HOURS</span>
+                        <span class="text-start fw-bold text-muted" style="font-size: 11px;">HORAS</span>
                      </div>
                   </div>
                   <div class="d-inline-block">
                      <div class="d-flex flex-column">
                         <span class="timer" id="Startminutes"></span>
-                        <span class="text-start fw-bold text-muted" style="font-size: 11px;">MINUTES</span>
+                        <span class="text-start fw-bold text-muted" style="font-size: 11px;">MINUTOS</span>
                      </div>
                   </div>
                   <div class="d-inline-block">
                      <div class="d-flex flex-column">
                         <span class="timer" id="Startseconds"></span>
-                        <span class="text-start fw-bold text-muted" style="font-size: 11px;">SECONDS</span>
+                        <span class="text-start fw-bold text-muted" style="font-size: 11px;">SEGUNDOS</span>
                      </div>
                   </div>
                </div>
@@ -85,31 +84,31 @@
             {% comment %} ending timer {% endcomment %}
             <div class="container d-none fs-2 d-flex flex-column" id="endTimerSection">
                <div class="text-center fs-6 d-inline-block fw-bold">
-                  <span class="text-muted endCon">ENDS IN</span>
+                  <span class="text-muted endCon">TERMINA EN</span>
                </div>
                <div class="text-center endCon">
                   <div class="d-inline-block">
                      <div class="d-flex flex-column">
                         <span class="timer" id="Enddays"></span>
-                        <span class="text-start fw-bold text-muted" style="font-size: 11px;">DAYS</span>
+                        <span class="text-start fw-bold text-muted" style="font-size: 11px;">DÍAS</span>
                      </div>
                   </div>
                   <div class="d-inline-block">
                      <div class="d-flex flex-column">
                         <span class="timer" id="Endhours"></span>
-                        <span class="text-start fw-bold text-muted" style="font-size: 11px;">HOURS</span>
+                        <span class="text-start fw-bold text-muted" style="font-size: 11px;">HORAS</span>
                      </div>
                   </div>
                   <div class="d-inline-block">
                      <div class="d-flex flex-column">
                         <span class="timer" id="Endminutes"></span>
-                        <span class="text-start fw-bold text-muted" style="font-size: 11px;">MINUTES</span>
+                        <span class="text-start fw-bold text-muted" style="font-size: 11px;">MINUTOS</span>
                      </div>
                   </div>
                   <div class="d-inline-block">
                      <div class="d-flex flex-column">
                         <span class="timer" id="Endseconds"></span>
-                        <span class="text-start fw-bold text-muted" style="font-size: 11px;">SECONDS</span>
+                        <span class="text-start fw-bold text-muted" style="font-size: 11px;">SEGUNDOS</span>
                      </div>
                   </div>
                </div>
@@ -121,7 +120,7 @@
          {% comment %} Attempt button {% endcomment %}
          <div class="p-2 d-flex justify-content-center">
             <button id="attempt" type="button" class="animate__animated animate__backInUp btn btn-sm btn-success">
-            Attempt now
+            Intentar ahora
             </button>
          </div>
       </div>
@@ -137,8 +136,8 @@
          {% for question in questions  %}
          <div class="border border-warning mb-3 bg-warning bg-opacity-10 rounded p-3">
             <div class="d-flex justify-content-between border-bottom mb-3">
-               <h6 class="fw-bold">Question {{forloop.counter}} of {{ total_questions }}</h6>
-               <h6 class="fw-bold">Marks : {{question.marks}}</h6>
+               <h6 class="fw-bold">Pregunta {{forloop.counter}} de {{ total_questions }}</h6>
+               <h6 class="fw-bold">Puntos : {{question.marks}}</h6>
             </div>
             <label class="fw-bold mb-2"> {{question.question}} </label>
             <div class="form-check mb-2">
@@ -171,17 +170,17 @@
          </div>
          {% endfor %}
          <div class="d-flex justify-content-end bg-light p-2 border rounded mb-3">
-            <input id="subForm" type="submit" value="Submit" class="btn btn-sm btn-primary px-3">
+            <input id="subForm" type="submit" value="Enviar" class="btn btn-sm btn-primary px-3">
          </div>
       </form>
    </div>
 </div>
 <script>
-// Hide questions and "Started!" at first
+// Ocultar preguntas y "¡Iniciado!" al principio
 $('#questions').addClass('d-none');
 $('#start').addClass('d-none');
 
-// Show questions and "Started!" after clicking "Attempt now"
+// Mostrar preguntas y "¡Iniciado!" después de hacer clic en "Intentar ahora"
 $('#attempt').click(function(){
     $('#questions').removeClass('d-none').show(1000);
     $('#start').removeClass('d-none').show(1000);
@@ -191,19 +190,17 @@ $('#attempt').click(function(){
     $('.progress').show();
 });
 
-// Timer logic
+// Lógica del temporizador
 var quizStart = new Date('{{ quiz.start|date:"Y-m-d H:i:s" }}').getTime();
 var quizEnd = new Date('{{ quiz.end|date:"Y-m-d H:i:s" }}').getTime();
-var now = new Date().getTime();
 
 function updateTimers() {
     var now = new Date().getTime();
     var startDiff = quizStart - now;
     var endDiff = quizEnd - now;
 
-    // STARTS IN
+    // INICIA EN
     if (startDiff > 0) {
-        // Show "STARTS IN" timer
         $('#StartdaysSectionDV').removeClass('d-none');
         $('#endTimerSection').addClass('d-none');
         $('#attempt').hide();
@@ -221,15 +218,19 @@ function updateTimers() {
         $('#Startminutes').text((minutes < 10 ? "0" : "") + minutes + " :");
         $('#Startseconds').text((seconds < 10 ? "0" : "") + seconds);
 
-        // When time is up, reload to show quiz
+        // Cuando llegue el momento, recargar para mostrar el quiz
         if (startDiff < 1000) {
             location.reload();
         }
     } else if (endDiff > 0) {
-        // Quiz started, show "ENDS IN" timer and attempt button
+        // Quiz iniciado, mostrar "TERMINA EN" y botón de intentar
         $('#StartdaysSectionDV').addClass('d-none');
         $('#endTimerSection').removeClass('d-none');
-        $('#attempt').show();
+        if ($('#questions').hasClass('d-none')) {
+            $('#attempt').show();
+        } else {
+            $('#attempt').hide();
+        }
         $('.progress').show();
 
         var days = Math.floor(endDiff / (1000 * 60 * 60 * 24));
@@ -242,13 +243,13 @@ function updateTimers() {
         $('#Endminutes').text((minutes < 10 ? "0" : "") + minutes + " :");
         $('#Endseconds').text((seconds < 10 ? "0" : "") + seconds);
 
-        // Progress bar
+        // Barra de progreso
         var quizDuration = (quizEnd - quizStart) / 1000;
         var timeLeft = (quizEnd - now) / 1000;
         var percent = 100 - (timeLeft / quizDuration) * 100;
         percent = Math.max(0, Math.min(100, percent));
         $('#progressBar').css('width', percent + '%');
-        $('#progressBar').text('Time elapsed: ' + percent.toFixed(2) + '%');
+        $('#progressBar').text('Tiempo transcurrido: ' + percent.toFixed(2) + '%');
 
         if (percent > 85) {
             $('#progressBar').removeClass('bg-danger').addClass('bg-warning text-dark fw-bold');
@@ -256,12 +257,12 @@ function updateTimers() {
         if (percent > 95) {
             $('#progressBar').removeClass('bg-warning text-dark').addClass('bg-danger fw-bold');
         }
-        // When quiz ends, auto-submit
+        // Cuando termine el quiz, auto-enviar
         if (endDiff < 1000) {
             $('#subForm').click();
         }
     } else {
-        // Quiz ended
+        // Quiz terminado
         $('#StartdaysSectionDV').addClass('d-none');
         $('#endTimerSection').addClass('d-none');
         $('#attempt').hide();

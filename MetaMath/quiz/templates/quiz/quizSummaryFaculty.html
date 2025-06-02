@@ -42,11 +42,11 @@
          <div>
             <p><span class="material-symbols-outlined inline-icons me-2">
                groups
-               </span>Estudiantes Participantes : <span class="fw-bold">{{ quiz.attempted_students}}/{{total_students}}</span>
+               </span>Estudiantes participantes : <span class="fw-bold">{{ quiz.attempted_students}}/{{total_students}}</span>
             </p>
             <p><span class="material-symbols-outlined inline-icons me-2">
                format_list_numbered
-               </span>Total de Preguntas :<span class="fw-bold"> {{ quiz.total_questions}}</span> 
+               </span>Total de preguntas :<span class="fw-bold"> {{ quiz.total_questions}}</span> 
             </p>
          </div>
       </div>
@@ -62,19 +62,19 @@
          {% if quiz.total_marks %}
          <p><span class="material-symbols-outlined inline-icons me-2">
             military_tech
-            </span>Total de Puntos :<span class="fw-bold"> {{ quiz.total_marks }}</span>
+            </span>Total de puntos :<span class="fw-bold"> {{ quiz.total_marks }}</span>
          </p>
          {% endif %}
          <p><span class="material-symbols-outlined inline-icons me-2">
             timelapse
-            </span>Duración del Quiz : <span class="fw-bold"> {{ quiz.duration }}</span>
+            </span>Duración del quiz : <span class="fw-bold"> {{ quiz.duration }}</span>
          </p>
       </div>
    </div>
 </div>
 {% if quiz.publish_status %}
 <p class="text-success fw-bold d-flex justify-content-center my-3">
-   ¡Puntos Publicados!
+   ¡Puntos publicados!
 </p>
 {% else %}
 <div class="d-flex justify-content-center my-3">
@@ -93,7 +93,7 @@
    <table class="table text-center table-borderless" style="white-space: nowrap;">
       <thead class="border-bottom">
          <tr>
-            <th scope="col">SL</th>
+            <th scope="col">N°</th>
             <th scope="col" colspan="2">Estudiante</th>
             <th scope="col">ID</th>
             <th scope="col">Puntos</th>
@@ -113,6 +113,7 @@
             <td>{{student.submission_time}}</td>
             {% else %}
             <td>No intentó</td>
+            <td>-</td>
             {% endif %}
          </tr>
          {% endfor %}

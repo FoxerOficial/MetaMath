@@ -18,8 +18,7 @@
 <div class="container shadow-sm">
    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
       <ol class="breadcrumb p-3">
-         <li class="breadcrumb-item fw-bold"><a style="color: rgb(10, 10, 48)" href="{% url 'facultyCourses' %}">Mis
-            Cursos</a>
+         <li class="breadcrumb-item fw-bold"><a style="color: rgb(10, 10, 48)" href="{% url 'facultyCourses' %}">Mis Cursos</a>
          </li>
          <li class="breadcrumb-item fw-bold"><a style="color: rgb(10, 10, 48)"
             href="{% url 'course' course.code %}">{{ course.name }}</a></li>
@@ -62,7 +61,7 @@
             </p>
             <p> <span class="material-symbols-outlined inline-icons me-2">
                timelapse
-               </span>Duración : <span class="fw-bold">{{ quiz.duration}}</span>
+               </span>Duración : <span class="fw-bold">{{ quiz.duration_str }}</span>
             </p>
             <P><span class="material-symbols-outlined inline-icons me-2">
                alarm_on
@@ -78,7 +77,15 @@
             <div class="fw-bold">
                <span><span class="fw-bold fs-5">{{forloop.counter}}.</span> <span class="me-3"> {{question.question}} </span>{{question.marks}} puntos
             </div>
-            {% if question.student_answer == question.answer  %} <span class="text-success fw-bold"> <img class="mb-1" height ="18" src="{% static 'images/icon/tick.png' %}" alt=""> Correcto </span> {% else %} <span class="text-danger fw-bold"> <img height ="16" class="mb-1" src="{% static 'images/icon/cross.png' %}" alt=""> Incorrecto </span>  {% endif %}
+            {% if question.student_answer == question.answer  %}
+               <span class="text-success fw-bold">
+                  <img class="mb-1" height="18" src="{% static 'images/icon/tick.png' %}" alt=""> Correcto
+               </span>
+            {% else %}
+               <span class="text-danger fw-bold">
+                  <img height="16" class="mb-1" src="{% static 'images/icon/cross.png' %}" alt=""> Incorrecto
+               </span>
+            {% endif %}
          </div>
          <div>
             <p {% if question.student_answer == question.answer and question.answer == 'A' %} class="alert alert-success fw-bold" {% elif question.student_answer != question.answer and question.student_answer == 'A' %} class="alert alert-danger fw-bold" {% else %} class="alert alert-light border" {% endif %} style="padding: 0.60rem !important">A : {{question.option1}} </p>
@@ -114,14 +121,13 @@
          return i * 250;
       }
    });
-   
-   
-   let time_taken = {{ quiz.time_taken }};
+
+   let time_taken = {{ quiz.time_taken|default:0 }};
    function convertTime(timetaken) {
        var hours = Math.floor(timetaken / 3600);
        var minutes = Math.floor((timetaken - (hours * 3600)) / 60);
        var seconds = timetaken - (hours * 3600) - (minutes * 60);
-         seconds = Math.floor(seconds);
+       seconds = Math.floor(seconds);
        if (hours < 10) {
            hours = "0" + hours;
        }

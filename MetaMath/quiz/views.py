@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.utils import timezone
 from django.db.models import Count, Sum, F, FloatField, Q, Prefetch
 from django.db.models.functions import Cast
+from datetime import timedelta
 
 
 def quiz(request, code):
@@ -216,7 +217,24 @@ def quizResult(request, code, quiz_id):
             quiz.time_taken = round(quiz.time_taken, 2)
             quiz.submission_time = student_answer.created_at.strftime(
                 "%a, %d-%b-%y at %I:%M %p")
-        return render(request, 'quiz/quizResult.html', {'course': course, 'quiz': quiz, 'questions': questions, 'student': student})
+        quiz.time_taken = int(quiz.time_taken) if quiz.time_taken else 0
+
+        def format_duration(td):
+            if not td or not isinstance(td, timedelta):
+                return "0:00"
+            total_seconds = int(td.total_seconds())
+            hours, remainder = divmod(total_seconds, 3600)
+            minutes, seconds = divmod(remainder, 60)
+            if hours > 0:
+                return f"{hours}h {minutes}m {seconds}s"
+            elif minutes > 0:
+                return f"{minutes}m {seconds}s"
+            else:
+                return f"{seconds}s"
+
+        context = {'course': course, 'quiz': quiz, 'questions': questions, 'student': student}
+        context['quiz'].duration_str = format_duration(quiz.duration)
+        return render(request, 'quiz/quizResult.html', context)
     else:
         return redirect('std_login')
 

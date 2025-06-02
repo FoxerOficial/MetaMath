@@ -52,7 +52,7 @@ class Quiz(models.Model):
 class Question(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     question = models.TextField()
-    marks = models.IntegerField(default=0, null=False)
+    marks = models.DecimalField(max_digits=5, decimal_places=2, default=0, null=False)  # Cambiado aquí
     option1 = models.TextField(null=False, blank=False, default='',)
     option2 = models.TextField(null=False, blank=False, default='')
     option3 = models.TextField(null=False, blank=False, default='')
