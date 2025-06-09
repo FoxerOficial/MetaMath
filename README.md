@@ -2,7 +2,6 @@
 
 MetaMath es un sistema de gestión de aprendizaje y evaluación en línea para la educación académica.
 
-> **Nota:** Este proyecto fue desarrollado de forma independiente tomando como base el proyecto [ELMS-Swe](https://github.com/nz-m/eLMS-SWE), adaptando y expandiendo sus funcionalidades para ajustarse a las necesidades de MetaMath.
 
 ## Características
 
@@ -112,3 +111,6 @@ Mis agradecimientos para las personas que me apoyaron tanto con el proyecto como
                     <li>• Y muchas personas más</li>
                 </ul>
             </div>
+
+            
+> **Nota:** Este proyecto fue desarrollado de forma independiente tomando como base el proyecto [ELMS-Swe](https://github.com/nz-m/eLMS-SWE), adaptando y expandiendo sus funcionalidades para ajustarse a las necesidades de MetaMath.
